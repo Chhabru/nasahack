@@ -261,15 +261,19 @@ on_off = np.array(trigger_onset(cft, thr_on, thr_off))
 # The first column contains the indices where the trigger is turned "on". 
 # The second column contains the indices where the trigger is turned "off".
 
-print(on_off[1:10])
+sorted_tr_data = np.sort(tr_data)[::-1]
+largestQuake = sorted_tr_data[0]
+largestTime = tr_times[np.where(tr_data == largestQuake)]
+
 
 # Plot on and off triggers
 fig,ax = plt.subplots(1,1,figsize=(12,3))
 for i in np.arange(0,len(on_off)):
     triggers = on_off[i]
-    ax.axvline(x = tr_times[triggers[0]], color='red', label='Trig. On')
+    ax.axvline(x = tr_times[triggers[0]], color='aqua', label='Trig. On')
     ax.axvline(x = tr_times[triggers[1]], color='purple', label='Trig. Off')
-
+ax.axvline(x = largestTime, c='green', label='Trig. On')
+ax.axvline(x = off_val, c='red', label='Trig. Off')
 # Plot seismogram
 ax.plot(tr_times,tr_data)
 ax.set_xlim([min(tr_times),max(tr_times)])
