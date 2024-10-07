@@ -1,5 +1,6 @@
 # ﷽
 # Uses the provided Jupyter notebook for some basic code.
+# You can use the files provided or download more from the link in the README
 # Import libraries
 import numpy as np
 import pandas as pd
